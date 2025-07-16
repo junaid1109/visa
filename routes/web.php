@@ -1,0 +1,66 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CardController;
+use App\Http\Controllers\User\CardController as UserCard;
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\HomeController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('user/login');
+});
+
+
+Route::get('/login',[AuthController::class,'login'])->name('login');
+
+Route::prefix('user')->name('user.')->group(function(){
+  
+    Route::middleware(['guest:web','PreventBackHistory'])->group(function(){
+          Route::get('/login',[AuthController::class,'login'])->name('login');
+          Route::post('/check',[UserController::class,'check'])->name('check');
+        //   Route::post('/create',[UserController::class,'create'])->name('create');
+    });
+
+    Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
+        Route::get('/home',[AuthController::class,'dashboard'])->name('home');
+        Route::get('/logout',[UserController::class,'logout'])->name('logout');
+        Route::get('/add-new',[UserController::class,'add'])->name('add');
+        Route::get('/card',[UserCard::class,'index'])->name('card');
+        Route::post('/card',[UserCard::class,'store'])->name('card.store');
+        Route::post('/fetchCard',[UserCard::class,'fetchCard'])->name('fetchCard');
+
+    });
+
+});
+
+Route::prefix('vrtvrtregrtrtbteyb')->name('vrtvrtregrtrtbteyb.')->group(function(){
+       
+    Route::middleware(['guest:admin','PreventBackHistory'])->group(function(){
+          Route::view('/','admin/login')->name('login');
+          Route::view('/login','admin/login')->name('login');
+          Route::post('/check',[AdminController::class,'check'])->name('check');
+    });
+
+    Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
+
+        Route::get('/home',[AdminController::class,'dashboard'])->name('home');
+        Route::get('/card',[CardController::class,'index'])->name('card');
+        Route::post('/card/update',[CardController::class,'update'])->name('card.update');
+        Route::post('/fetchCard',[CardController::class,'fetchCard'])->name('fetchCard');
+
+        Route::get('/logout',[AdminController::class,'logout'])->name('logout');
+    });
+
+});
