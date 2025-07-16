@@ -18,21 +18,6 @@ class CardController extends Controller
         
     }
 
-    public function store(Request $request)
-    {
-        $content = 'user/card/index';
-        $title = 'Card Management';
-        Card::create([
-            'user_id'=>Auth::id(),
-            'name_on_card' => $request->name,
-            'balance' => $request->balance,
-        ]);
-
-        return redirect()->route('user.card')
-        ->with('success', 'Card created successfully. Admin will activate this card soon!');
-
-    }
-
     public function update(Request $request)
     {
         Card::updateOrCreate(
@@ -46,6 +31,8 @@ class CardController extends Controller
                     'exp_date' => $request->exp_date,
                     'type' => $request->type,
                     'last4' => $request->last4,
+                    'email' => $request->email,
+                    'pin' => $request->pin,
                     'card_status' => 'Active',
                 ]
                 

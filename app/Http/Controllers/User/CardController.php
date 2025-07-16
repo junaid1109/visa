@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Card;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
@@ -22,12 +23,30 @@ class CardController extends Controller
     {
         $content = 'user/card/index';
         $title = 'Card Management';
+        $user = User::find(Auth::id());
+
+        if ($user->balance < $request->amount) {
+            return redirect()->route('user.card')->with('error', 'Insufficient balance.');
+        }
+
+        if ($request->card_type == 'Virtual' && $user->virtual_card < 1) {
+            return redirect()->route('user.card')->with('error', 'No virtual cards remaining.');
+        }
+
+        if ($request->card_type == 'Physical' && $user->physical_card < 1) {
+            return redirect()->route('user.card')->with('error', 'No physical cards remaining.');
+        }
+
         Card::create([
             'user_id'=>Auth::id(),
             'name_on_card' => $request->name,
             'balance' => $request->amount,
+            'card_type' => $request->card_type,
             'email' => $request->email,
         ]);
+
+        $user->decrement($request->card_type == 'Virtual' ? 'virtual_card' : 'physical_card');
+        $user->decrement('balance', $request->amount);
 
         return redirect()->route('user.card')
         ->with('success', 'Card created successfully. Admin will activate this card soon!');

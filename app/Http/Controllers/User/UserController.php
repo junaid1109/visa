@@ -49,6 +49,12 @@ class UserController extends Controller
         }
     }
 
+    function api(Request $request){
+        $content = 'user/api/index'; 
+        $title = 'Api Management';
+        return view('user/master')->with(['content'=>$content,'title'=>$title]);
+    }
+
     function logout(){
         Auth::guard('web')->logout();
         return redirect('/');

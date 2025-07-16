@@ -9,6 +9,7 @@ class Card extends Model
     protected $fillable = [
         'user_id',
         'name_on_card',
+        'card_type',
         'balance',
         'email',
         'card_no',
@@ -18,6 +19,7 @@ class Card extends Model
         'type',
         'card_status',
         'last4',
+        'pin',
         'balance',
         'is_default',
         'updated_at',

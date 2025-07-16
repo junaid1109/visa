@@ -5,5 +5,3 @@
 @include($content)
 
 @include('user/layouts/footer')
-
-@stack('scripts')

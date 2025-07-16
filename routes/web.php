@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\User\CardController as UserCard;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\TreasuryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,11 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::get('/card',[UserCard::class,'index'])->name('card');
         Route::post('/card',[UserCard::class,'store'])->name('card.store');
         Route::post('/fetchCard',[UserCard::class,'fetchCard'])->name('fetchCard');
+        Route::get('/treasury',[TreasuryController::class,'index'])->name('treasury');
+        Route::get('/settings',[AuthController::class,'settings'])->name('settings');
+        Route::post('/settings-store',[AuthController::class,'settingsStore'])->name('settings.store');
+
+        Route::get('/api',[UserController::class,'api'])->name('api');
 
     });
 

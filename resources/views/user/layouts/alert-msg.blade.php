@@ -5,11 +5,11 @@
     </div>
 @endif
 
-@if (Session::has('unsuccess'))
+@if (Session::has('error'))
 
     <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ Session::get('unsuccess') }}
+            {{ Session::get('error') }}
     </div>
 @endif
 

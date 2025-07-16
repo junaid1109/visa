@@ -22,6 +22,27 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('user.treasury') }}" class="waves-effect">
+                        <i class="bx bx-money"></i>
+                        <span>Treasury</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.api') }}" class="waves-effect">
+                        <i class="bx bx-money"></i>
+                        <span>API</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.settings') }}" class=" waves-effect">
+                        <i class="bx bx-brightness"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

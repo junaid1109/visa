@@ -28,6 +28,7 @@
                                             <tr class="text-center">
                                                 <th>Sr#</th>
                                                 <th>Name on card</th>
+                                                <th>Email</th>
                                                 <th>Card No</th>
                                                 <th>Status</th>
                                                 <th>Created At</th>
@@ -43,6 +44,7 @@
                                                     <tr class="text-center" id="user{{$item->id}}">
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$item->name_on_card}}</td>
+                                                        <td>{{$item->email}}</td>
                                                         <td>{{$item->card_no }}</td>
                                                         @if ($item->card_status == 'Active')
                                                             <td class="text-center align-middle"> 
@@ -108,7 +110,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="text"  id="email">
+                            <input class="form-control" type="text" name="email" id="email">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -133,14 +135,19 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">Type</label>
-                        <div class="col-md-4">
+                        <label for="example-text-input" class="col-md-1 col-form-label">Type</label>
+                        <div class="col-md-3">
                             <input class="form-control" type="text" name="type" id="type">
                         </div>
 
-                        <label for="example-text-input" class="col-md-2 col-form-label">Last4</label>
-                         <div class="col-md-4">
+                        <label for="example-text-input" class="col-md-1 col-form-label">Last4</label>
+                         <div class="col-md-3">
                             <input class="form-control" type="text" name="last4" id="last4">
+                        </div>
+
+                        <label for="example-text-input" class="col-md-1 col-form-label">Pin</label>
+                         <div class="col-md-3">
+                            <input class="form-control" type="text" name="pin" id="pin">
                         </div>
                     </div>
                      <div style="float:right">
@@ -179,6 +186,7 @@
                     $('#exp_date').val(data.data.exp_date);
                     $('#type').val(data.data.type);
                     $('#last4').val(data.data.last4);
+                    $('#pin').val(data.data.pin);
                     $('.updateModal').modal('show');
                 }
         });

@@ -1,13 +1,13 @@
         <footer class="footer">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="text-sm-right d-none d-sm-block">
-                                           Copyright © 2025 All Rights Reserved <a href="https://visa.build/" target="_blank">Visa.build</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text-sm-right d-none d-sm-block">
+                            Copyright © 2025 All Rights Reserved <a href="https://visa.build/" target="_blank">Visa.build</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 </div>
@@ -37,6 +37,7 @@
 <script src="{{asset('admin_assets/js/pages/dashboard.init.js')}}"></script>
 
 <script src="{{asset('admin_assets/js/app.js')}}"></script>
+@stack('scripts')
 
 </body>
 </html>

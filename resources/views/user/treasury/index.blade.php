@@ -1,89 +1,106 @@
 <div class="page-content">
-                    <div class="container-fluid">
-
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-flex align-items-center justify-content-between">
-                                    <h4 class="mb-0 font-size-18">Dashboard</h4>
-
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item active">Welcome to Dashboard</li>
-                                        </ol>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end page title -->
-
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="row">
-                                      <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Total Account Balance</p>
-                                                        <h4 class="mb-0 font-weight-bold ">{{ Auth::user()->balance }}</h4>
-                                                    </div>
-                                                    
-                                                    <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#depositModal">Deposit</button>
-                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Active Card</p>
-                                                        <h4 class="mb-0">{{ $cards->where('card_status', 'Active')->count() }}</h4>
-                                                    </div>
-                                                    
-                                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
-                                                        <span class="avatar-title">
-                                                            <i class="bx bx-copy-alt font-size-24"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Pending Card</p>
-                                                        <h4 class="mb-0">{{ $cards->where('card_status', 'Pending')->count() }}</h4>
-                                                    </div>
-                                                    
-                                                     <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
-                                                        <span class="avatar-title">
-                                                            <i class="bx bx-copy-alt font-size-24"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                  
-                                </div>
-                                <!-- end row -->
-
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                    </div>
-                    <!-- container-fluid -->
+    <div class="container-fluid">
+        <!-- Main Card -->
+        <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #c6d3e0;">
+                    <h5 class="card-title mb-0">Visa Card</h5>
+                    <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#depositModal">Increase funds</button>
                 </div>
+                <div class="card-body">
+                    <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-muted border-0 pl-0">Collateral </td>
+                                            <td class="text-right border-0"><strong>USDT 6,625.32</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted border-0 pl-0">Equivalent credit assigned</td>
+                                            <td class="text-right border-0"><strong>USD 6,607.22</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted border-0 pl-0">Outstanding balance</td>
+                                            <td class="text-right border-0"><strong>USD 6,549.17</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted border-0 pl-0">Available balance</td>
+                                            <td class="text-right border-0"><strong>USD {{ Auth::user()->balance }}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- General Card -->
+            <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #c6d3e0;">
+                <h5 class="card-title mb-0">Visa Pay</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title"><strong> Total funds </strong></h4>
+                            <dl class="row mb-0">
+                                
+
+                                <dt class="col-sm-5">Payment amount awaiting funds</dt>
+                                <dd class="col-sm-3 offset-sm-4"><strong>USDT 0.00</strong></dd>
+                                <dd class="col-sm-9 offset-sm-9"><strong>USDC 0.00</strong></dd>
+
+                                <dt class="col-sm-5">Available balance</dt>
+                                <dd class="col-sm-3 offset-sm-4"><strong>USDT 0.00</strong></dd>
+                                <dd class="col-sm-9 offset-sm-9"><strong>USDC 0.00</strong></dd>
+                            </dl>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+           
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #c6d3e0;">
+                        <h5 class="card-title mb-0">General</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Total funds </span>
+                            <strong>USDT 0.50</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<style>
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.text-muted {
+    color: #6c757d !important;
+}
+</style>
+</div>
 
     <div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
