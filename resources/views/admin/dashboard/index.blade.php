@@ -16,6 +16,7 @@
                                 </div>
                             </div>
                         </div>
+                        @include('layouts.alert-msg')
                         <!-- end page title -->
 
                         <div class="row">
@@ -27,7 +28,7 @@
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <p class="text-muted font-weight-medium">Users</p>
-                                                        <h4 class="mb-0">{{ count($user); }}</h4>
+                                                        <h4 class="mb-0">{{ count($users); }}</h4>
                                                     </div>
 
                                                     <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
@@ -39,23 +40,110 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="card mini-stats-wid">
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Card</p>
+                                                        <p class="text-muted font-weight-medium">Account Balance</p>
+                                                        <h4 class="mb-0">${{ $user->balance; }}</h4>
+                                                    </div>
+                                                    <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#balanceModal">Add Account Balance</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium">Total Card</p>
                                                         <h4 class="mb-0">{{ count($card); }}</h4>
                                                     </div>
                                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                                                         <span class="avatar-title rounded-circle bg-primary">
-                                                            <i class="bx bx-archive-in font-size-24"></i>
+                                                            <i class="bx bx-dish font-size-24"></i>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                              
+
+
+                                     <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium">Total Virtual Card</p>
+                                                        <h4 class="mb-0">{{ $card->where('card_type', 'Virtual')->count()}}</h4>
+                                                    </div>
+                                                         <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="bx bx-radio font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium">Total Physical Card</p>
+                                                        <h4 class="mb-0">{{  $card->where('card_type', 'Physical')->count() }}</h4>
+                                                    </div>
+                                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="bx bx-briefcase-alt-2 font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                     <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium">Remaining Virtual Card</p>
+                                                        <h4 class="mb-0">{{ $user->virtual_card; }}</h4>
+                                                    </div>
+                                                        <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#virtualModal">Add Virtual Card</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium">Remaining Physical Card</p>
+                                                        <h4 class="mb-0">{{  $user->physical_card; }}</h4>
+                                                    </div>
+                                                    <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#physicalModal">Add Physical Card</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                                 <!-- end row -->
 
@@ -66,3 +154,92 @@
                     </div>
                     <!-- container-fluid -->
                 </div>
+
+<div class="modal fade" id="virtualModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('vrtvrtregrtrtbteyb.add') }}" method="post" >
+                    @csrf
+                <div class="modal-body">
+                    <div id="flatCurrencySection">
+                        <div class="form-group">
+                            <label><strong>Add Virtual Card</strong></label>
+                            <input type="number" name="total"  class="form-control"  placeholder="Enter in number">
+                            <input type="hidden" name="type" value="virtual" >
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="physicalModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('vrtvrtregrtrtbteyb.add') }}" method="post" >
+                    @csrf
+
+            <div class="modal-body">
+                <div id="flatCurrencySection">
+                    <div class="form-group">
+                        <label><strong>Add Physical Card</strong></label>
+                        <input type="number" name="total" class="form-control"  placeholder="Enter in number">
+                        <input type="hidden" name="type" value="physical" >
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Add</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="balanceModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('vrtvrtregrtrtbteyb.add') }}" method="post" >
+                    @csrf
+            <div class="modal-body">
+                <div id="flatCurrencySection">
+                    <div class="form-group">
+                        <label><strong>Add Balance</strong></label>
+                        <input type="number" name="total" class="form-control"  placeholder="Enter in number">
+                        <input type="hidden" name="type" value="balance" >
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Add</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

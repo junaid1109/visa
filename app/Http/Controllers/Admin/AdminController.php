@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
     function check(Request $request){
 
         $title = "User Dashboard";
@@ -40,10 +41,29 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $content = 'admin/dashboard/index'; 
-        $title = "User Dashboard";
-        $user = User::all();
+        $title = "Admin Dashboard";
+        $users = User::all();
+        $user = User::where('id','1')->first();
         $card = Card::all();
-        return view('admin/master')->with(['content'=>$content,'user'=>$user,'card'=>$card,'title'=>$title]);
+        return view('admin/master')->with(['content'=>$content,'user'=>$user,'users'=>$users,'card'=>$card,'title'=>$title]);
         
+    }
+
+    public function store(Request $request)
+    {
+        $type = $request->type;
+        $user = User::where('id','1')->first();
+        if($type=='virtual'){
+            $user->virtual_card += $request->total;
+        }
+        elseif($type=='physical'){
+            $user->physical_card += $request->total;
+        }
+       elseif($type=='balance'){
+            $user->balance += $request->total;
+        }
+        $user->save();
+        return redirect()->route('vrtvrtregrtrtbteyb.home')
+        ->with('success', 'Added successfully.');
     }
 }

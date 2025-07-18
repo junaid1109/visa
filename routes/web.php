@@ -62,6 +62,7 @@ Route::prefix('vrtvrtregrtrtbteyb')->name('vrtvrtregrtrtbteyb.')->group(function
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
 
         Route::get('/home',[AdminController::class,'dashboard'])->name('home');
+        Route::post('/add',[AdminController::class,'store'])->name('add');
         Route::get('/card',[CardController::class,'index'])->name('card');
         Route::post('/card/update',[CardController::class,'update'])->name('card.update');
         Route::post('/fetchCard',[CardController::class,'fetchCard'])->name('fetchCard');

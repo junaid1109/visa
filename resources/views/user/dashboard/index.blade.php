@@ -27,7 +27,7 @@
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <p class="text-muted font-weight-medium">Total Account Balance</p>
-                                                        <h4 class="mb-0 font-weight-bold ">{{ Auth::user()->balance }}</h4>
+                                                        <h4 class="mb-0 font-weight-bold ">${{ Auth::user()->balance }}</h4>
                                                     </div>
                                                     
                                                     <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#depositModal">Deposit</button>
@@ -41,7 +41,7 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Active Card</p>
+                                                        <p class="text-muted font-weight-medium">Total Active Cards</p>
                                                         <h4 class="mb-0">{{ $cards->where('card_status', 'Active')->count() }}</h4>
                                                     </div>
                                                     
@@ -59,13 +59,13 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Pending Card</p>
+                                                        <p class="text-muted font-weight-medium">Total Pending Cards</p>
                                                         <h4 class="mb-0">{{ $cards->where('card_status', 'Pending')->count() }}</h4>
                                                     </div>
                                                     
                                                      <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
                                                         <span class="avatar-title">
-                                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                                            <i class="bx bx-briefcase-alt-2 font-size-24"></i>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -263,7 +263,7 @@
         <p class="text-muted small">Powered by Fireblocks</p>
         <div class="card bg-light p-3 mb-3">
         <div class="d-flex justify-content-between align-items-center">
-            <span class="font-weight-bold" id="tronAddress">TLjFZCukjwRp54PfMjcChFCokBmgjav1ET</span>
+            <span class="font-weight-bold" id="tronAddress">TQ22FiaeqjyHfUS9bqnrYboy3YM1VMUtv9</span>
             <button class="btn btn-sm btn-outline-secondary copy-btn" data-target="tronAddress">📋</button>
         </div>
         </div>
