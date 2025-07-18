@@ -131,10 +131,15 @@
                                 
                     <!-- Flat Currency Section (Initially hidden) -->
                     <div id="flatCurrencySection">
-                    <div class="form-group">
-                        <label><strong>Amount</strong></label>
-                        <input type="number" class="form-control" id="depositAmount" placeholder="Enter amount">
-                    </div>
+                        <div class="form-group">
+                            <label><strong>Amount</strong></label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="depositAmount" placeholder="Enter amount">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <!-- Stablecoins Section (Initially hidden) -->
@@ -187,7 +192,7 @@
         </div>
     </div>
 
-    <!-- Network Templates (Hidden) -->
+ <!-- Network Templates (Hidden) -->
     <div id="networkTemplates" style="display:none;">
     <!-- Ethereum Template -->
         <div id="ethereumTemplate">
@@ -195,11 +200,15 @@
             <h6><strong>Network</strong></h6>
             <p>Ethereum - ERC20</p>
             <hr>
+            <center>
+                <img src="{{asset('admin_assets/images/qrcode/1.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+            </center>
+
             <h5><strong>Card deposit - Ethereum (ERC20)</strong></h5>
             <p class="text-muted small">Powered by Fireblocks</p>
             <div class="card bg-light p-3 mb-3">
             <div class="d-flex justify-content-between align-items-center">
-                <span class="font-weight-bold" id="ethAddress">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</span>
+                <span class="font-weight-bold" id="ethAddress">0x4a8ecE4eD8739c038780a62360DA918b2BE8B582</span>
                 <button class="btn btn-sm btn-outline-secondary copy-btn" data-target="ethAddress">📋</button>
             </div>
             </div>
@@ -222,11 +231,15 @@
         <h6><strong>Network</strong></h6>
         <p>Polygon PoS - ERC20</p>
         <hr>
+        <center>
+            <img src="{{asset('admin_assets/images/qrcode/1.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+        </center>
+
         <h5><strong>Card deposit - Polygon (ERC20)</strong></h5>
         <p class="text-muted small">Powered by Fireblocks</p>
         <div class="card bg-light p-3 mb-3">
         <div class="d-flex justify-content-between align-items-center">
-            <span class="font-weight-bold" id="polygonAddress">0x89C7656EC7ab88b098defB751B7401B5f6d8976F</span>
+            <span class="font-weight-bold" id="polygonAddress">0x4a8ecE4eD8739c038780a62360DA918b2BE8B582</span>
             <button class="btn btn-sm btn-outline-secondary copy-btn" data-target="polygonAddress">📋</button>
         </div>
         </div>
@@ -249,11 +262,14 @@
         <h6><strong>Network</strong></h6>
         <p>Solana - SPL</p>
         <hr>
+        <center>
+            <img src="{{asset('admin_assets/images/qrcode/3.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+        </center>
         <h5><strong>Card deposit - Solana (SPL)</strong></h5>
         <p class="text-muted small">Powered by Fireblocks</p>
         <div class="card bg-light p-3 mb-3">
         <div class="d-flex justify-content-between align-items-center">
-            <span class="font-weight-bold" id="solanaAddress">HNfJYhRk2HkEF1Q2Xb3WYH8v2qK5Jt8w7zL6p9x0y1</span>
+            <span class="font-weight-bold" id="solanaAddress">8n1TUjcTRBRRiGYW6chVWuynsTpDztsiqSENy33TMTrw</span>
             <button class="btn btn-sm btn-outline-secondary copy-btn" data-target="solanaAddress">📋</button>
         </div>
         </div>
@@ -276,11 +292,15 @@
         <h6><strong>Network</strong></h6>
         <p>TRON - TRC20</p>
         <hr>
+        <center>
+            <img src="{{asset('admin_assets/images/qrcode/2.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+        </center>
+
         <h5><strong>Card deposit - Tron (TRC20)</strong></h5>
         <p class="text-muted small">Powered by Fireblocks</p>
         <div class="card bg-light p-3 mb-3">
         <div class="d-flex justify-content-between align-items-center">
-            <span class="font-weight-bold" id="tronAddress">TLjFZCukjwRp54PfMjcChFCokBmgjav1ET</span>
+            <span class="font-weight-bold" id="tronAddress">TQ22FiaeqjyHfUS9bqnrYboy3YM1VMUtv9</span>
             <button class="btn btn-sm btn-outline-secondary copy-btn" data-target="tronAddress">📋</button>
         </div>
         </div>
@@ -337,53 +357,35 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <h6 class="text-muted mb-1"><strong>Beneficiary bank name</strong></h6>
-                                        <p class="mb-3">DBS Bank (Hong Kong) Limited</p>
+                                        <p class="mb-3">visa build inc</p>
                                         
                                         <h6 class="text-muted mb-1"><strong>SWIFT code</strong></h6>
-                                        <p class="mb-3">DHBKHKHH</p>
+                                        <p class="mb-3">TRWIUS35XXX</p>
+
+                                        <h6 class="text-muted mb-1"><strong>Bank account</strong></h6>
+                                        <p class="mb-3">215503855124</p>
                                         
                                         <h6 class="text-muted mb-1"><strong>Our bank address</strong></h6>
-                                        <p>18th Floor, The Center,<br>99 Queen's Road Central,<br>Central, Hong Kong HK</p>
+                                        <p>city bank US Inc, 30 W. 26TH Street, Sixth Floor, New York, NY, 10010, United States</p>
                                         </div>
                                     </div>
                                     
-                                    <!-- Right Column -->
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                        <h6 class="text-muted mb-1"><strong>Bank code</strong></h6>
-                                        <p class="mb-2">916</p>
-                                        
-                                        <h6 class="text-muted mb-1"><strong>Branch code</strong></h6>
-                                        <p class="mb-2">478</p>
-                                        
-                                        <h6 class="text-muted mb-1"><strong>Bank account</strong></h6>
-                                        <p class="mb-2">001153663</p>
-                                        
-                                        <h6 class="text-muted mb-1"><strong>Beneficiary name</strong></h6>
-                                        <p class="mb-2">Visa Technologies Limited</p>
-                                        
-                                        <h6 class="text-muted mb-1"><strong>Beneficiary address</strong></h6>
-                                        <p>25E, 23/F, One Taikoo Place,<br>979 King's Road,<br>Quarry Bay, Hong Kong</p>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="referenceCheck">
-                        <label class="form-check-label" for="referenceCheck">
-                            I have put reference ID <strong>IBM-EC24ED</strong> in the remark/note field. This helps us identify and process your payment.
-                        </label>
                     </div>
                     
                     <div class="alert alert-warning">
                     Please note that we will only be able to process deposits made from bank accounts with the same name as your registered entity in Visa.
                     </div>
-                </div>
-                <div class="modal-footer">
+
+                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" id="confirmTransferBtn">I have transferred</button>
                 </div>
+                </div>
+               
             </div>
         </div>
     </div>

@@ -132,8 +132,13 @@
                             <input class="form-control" type="text" name="name" id="name">
                         </div>
                         <label for="example-text-input" class="col-md-1 col-form-label">Balance</label>
-                         <div class="col-md-3">
-                            <input class="form-control" type="text" name="balance" id="balance">
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                    <input class="form-control" type="text" readonly id="balance">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">

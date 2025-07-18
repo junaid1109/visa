@@ -208,7 +208,7 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
             </form>
         </div>
@@ -229,7 +229,12 @@
                 <div id="flatCurrencySection">
                     <div class="form-group">
                         <label><strong>Add Balance</strong></label>
-                        <input type="number" name="total" class="form-control"  placeholder="Enter in number">
+                        <div class="input-group">
+                                <input type="number" name="total" class="form-control"  placeholder="Enter in number">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                        </div>
                         <input type="hidden" name="type" value="balance" >
 
                     </div>
@@ -237,7 +242,7 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
             </form>
         </div>

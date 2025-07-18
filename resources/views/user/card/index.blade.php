@@ -37,7 +37,7 @@
                                             <ul class="nav nav-tabs nav-tabs-custom mb-3" role="tablist">
                                                 <li class="nav-item mr-2">
                                                     <button class="btn btn-success" role="tab">
-                                                        Account Balance <span class="badge badge-warning ml-1" style="font-size: 1rem;">{{ Auth::user()->balance }}</span>
+                                                        Account Balance <span class="badge badge-warning ml-1" style="font-size: 1rem;">${{ Auth::user()->balance }}</span>
                                                     </button>
                                                 </li>
                                                  <li class="nav-item mr-2">
@@ -164,7 +164,12 @@
                             <input class="form-control" required placeholder="Name on card" type="text" name="name">
                         </div>
                         <div class="col-md-3">
-                            <input class="form-control" required placeholder="Amount" type="number" name="amount">
+                            <div class="input-group">
+                                <input class="form-control" required placeholder="Amount" type="number" name="amount">
+                                <div class="input-group-append">
+                                        <span class="input-group-text">$</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <select class="form-control" name="card_type">
@@ -203,18 +208,27 @@
                         <div class="col-md-6">
                             <input class="form-control" type="text" readonly id="name">
                         </div>
+
                         <label for="example-text-input" class="col-md-1 col-form-label">Balance</label>
-                         <div class="col-md-3">
-                            <input class="form-control" type="text" readonly id="balance">
+
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                    <input class="form-control" type="text" readonly id="balance">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
                         <div class="col-md-10">
                             <input class="form-control" type="text" readonly id="email">
                         </div>
                     </div>
-                     <div class="form-group row">
+
+                    <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Card No</label>
                         <div class="col-md-6">
                             <input class="form-control" type="text" readonly id="card_no">
@@ -224,7 +238,8 @@
                             <input class="form-control" type="text" readonly id="cvc">
                         </div>
                     </div>
-                     <div class="form-group row">
+
+                    <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">From Date</label>
                         <div class="col-md-4">
                             <input class="form-control" type="text" readonly id="from_date">
