@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -58,5 +60,30 @@ class UserController extends Controller
     function logout(){
         Auth::guard('web')->logout();
         return redirect('/');
+    }
+
+    public function updatePassword(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+             return redirect()->route('reset')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = User::find(1);
+        if (!Hash::check($request->old_password, $user->password)) {
+            return back()->withErrors(['old_password' => 'Old password is incorrect'])->withInput();
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with('success', 'Password updated successfully');
+
     }
 }

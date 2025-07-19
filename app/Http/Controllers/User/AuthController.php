@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Card;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,6 @@ class AuthController extends Controller
         $title = 'User';
         $cards = Card::where('user_id',Auth::id())->get();
         return view('user/master')->with(['content'=>$content,'title'=>$title,'cards'=>$cards]);
-        
     }
 
     public function settings(Request $request)

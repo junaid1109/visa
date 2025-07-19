@@ -91,6 +91,7 @@
                                                     <th>Card No</th>
                                                     <th>Status</th>
                                                     <th>Card Type</th>
+                                                    <th>Freez/Unfreez</th>
                                                     <th>Created At</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -126,10 +127,22 @@
                                                             <span class="btn btn-{{ $item->card_type == 'Virtual' ? 'primary' : 'warning' }} btn-sm">{{ $item->card_type }}</span>
                                                         </div>
                                                     </td>
+                                                    <td class="text-center align-middle"> 
+                                                        <div class="d-flex justify-content-center">
+                                                            <form method="POST" action="{{ route('user.card.toggleStatus', $item->id) }}">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-sm {{ $item->is_freezed ? 'btn-danger' : 'btn-success' }} btn-rounded"
+                                                                data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to change status" >
+                                                                    <strong>{{ $item->is_freezed ? 'Freez' : 'Unfreez' }}</strong>
+                                                                </button>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
                                                     <td>{{date("d-M-Y h:i A", strtotime($item->created_at));}}</td>
                                                     <td>
                                                         @if ($item->card_status == 'Pending')
-                                                            <button class="btn btn-info" disabled title="Card is pending"> <i class="bx bx-edit"></i></button>
+                                                            <button class="btn btn-info" disabled data-placement="top" data-toggle="tooltip" title="" data-original-title="Card is pending" > <i class="bx bx-edit"></i></button>
                                                         @else
                                                             <button class="btn btn-info" onclick="update({{ $item->id }})"> <i class="bx bx-edit"></i></button>
                                                         @endif

@@ -176,7 +176,7 @@
         </div>
     </div>
 
-    <!-- Network Templates (Hidden) -->
+     <!-- Network Templates (Hidden) -->
     <div id="networkTemplates" style="display:none;">
     <!-- Ethereum Template -->
         <div id="ethereumTemplate">
@@ -184,6 +184,10 @@
             <h6><strong>Network</strong></h6>
             <p>Ethereum - ERC20</p>
             <hr>
+            <center>
+                <img src="{{asset('admin_assets/images/qrcode/1.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+            </center>
+
             <h5><strong>Card deposit - Ethereum (ERC20)</strong></h5>
             <p class="text-muted small">Powered by Fireblocks</p>
             <div class="card bg-light p-3 mb-3">
@@ -211,6 +215,10 @@
         <h6><strong>Network</strong></h6>
         <p>Polygon PoS - ERC20</p>
         <hr>
+        <center>
+            <img src="{{asset('admin_assets/images/qrcode/1.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+        </center>
+
         <h5><strong>Card deposit - Polygon (ERC20)</strong></h5>
         <p class="text-muted small">Powered by Fireblocks</p>
         <div class="card bg-light p-3 mb-3">
@@ -238,6 +246,9 @@
         <h6><strong>Network</strong></h6>
         <p>Solana - SPL</p>
         <hr>
+        <center>
+            <img src="{{asset('admin_assets/images/qrcode/3.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+        </center>
         <h5><strong>Card deposit - Solana (SPL)</strong></h5>
         <p class="text-muted small">Powered by Fireblocks</p>
         <div class="card bg-light p-3 mb-3">
@@ -265,6 +276,10 @@
         <h6><strong>Network</strong></h6>
         <p>TRON - TRC20</p>
         <hr>
+        <center>
+            <img src="{{asset('admin_assets/images/qrcode/2.PNG')}}" alt="Ethereum Logo" style="width: 150px;" class="mb-2">
+        </center>
+
         <h5><strong>Card deposit - Tron (TRC20)</strong></h5>
         <p class="text-muted small">Powered by Fireblocks</p>
         <div class="card bg-light p-3 mb-3">
@@ -286,7 +301,6 @@
         </div>
     </div>
     </div>
-
     <div class="modal fade " id="bankDetailsModal" tabindex="-1" role="dialog" aria-labelledby="bankDetailsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

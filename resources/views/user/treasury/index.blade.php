@@ -15,15 +15,15 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-muted border-0 pl-0">Collateral </td>
-                                            <td class="text-right border-0"><strong>USDT 6,625.32</strong></td>
+                                            <td class="text-right border-0"><strong>USD 0.00</strong></td>
                                         </tr>
                                         <tr>
                                             <td class="text-muted border-0 pl-0">Equivalent credit assigned</td>
-                                            <td class="text-right border-0"><strong>USD 6,607.22</strong></td>
+                                            <td class="text-right border-0"><strong>USD 0.00</strong></td>
                                         </tr>
                                         <tr>
                                             <td class="text-muted border-0 pl-0">Outstanding balance</td>
-                                            <td class="text-right border-0"><strong>USD 6,549.17</strong></td>
+                                            <td class="text-right border-0"><strong>USD 0.00</strong></td>
                                         </tr>
                                         <tr>
                                             <td class="text-muted border-0 pl-0">Available balance</td>
@@ -79,7 +79,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <span class="text-muted">Total funds </span>
-                            <strong>USDT 0.50</strong>
+                            <strong>USDT 0.00</strong>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
         </div>
     </div>
 
- <!-- Network Templates (Hidden) -->
+    <!-- Network Templates (Hidden) -->
     <div id="networkTemplates" style="display:none;">
     <!-- Ethereum Template -->
         <div id="ethereumTemplate">

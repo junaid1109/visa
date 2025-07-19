@@ -23,6 +23,11 @@ Route::get('/', function () {
     return view('user/login');
 });
 
+Route::get('/jdanuiatarh', function () {
+    return view('reset-password');
+})->name('jdanuiatarh');
+
+Route::post('/reset-password',[UserController::class,'updatePassword'])->name('reset-password');
 
 Route::get('/login',[AuthController::class,'login'])->name('login');
 
@@ -40,6 +45,7 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::get('/add-new',[UserController::class,'add'])->name('add');
         Route::get('/card',[UserCard::class,'index'])->name('card');
         Route::post('/card',[UserCard::class,'store'])->name('card.store');
+        Route::post('/card/toggle-status/{id}', [UserCard::class, 'toggleStatus'])->name('card.toggleStatus');
         Route::post('/fetchCard',[UserCard::class,'fetchCard'])->name('fetchCard');
         Route::get('/treasury',[TreasuryController::class,'index'])->name('treasury');
         Route::get('/settings',[AuthController::class,'settings'])->name('settings');

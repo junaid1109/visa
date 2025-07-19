@@ -53,7 +53,8 @@ class CardController extends Controller
 
     }
 
-    public function fetchCard(Request $request){
+    public function fetchCard(Request $request)
+    {
 
         $data = Card::find($request->id);
         return response()->json([
@@ -62,6 +63,16 @@ class CardController extends Controller
             'message'=>'fetch Successfully',
         ]);
     }
+
+    public function toggleStatus($id)
+    {
+        $card = Card::findOrFail($id);
+        $card->is_freezed = !$card->is_freezed;
+        $card->save();
+
+        return back()->with('success', 'Card status updated successfully.');
+    }
+
 
 
 }
