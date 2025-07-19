@@ -70,7 +70,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-             return redirect()->route('reset')
+             return redirect()->route('jdanuiatarh')
                 ->withErrors($validator)
                 ->withInput();
         }
