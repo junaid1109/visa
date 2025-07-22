@@ -60,6 +60,7 @@
                                                 <th>Email</th>
                                                 <th>Card No</th>
                                                 <th>Status</th>
+                                                <th>Card Type</th>
                                                 <th>Created At</th>
                                                 <th>Action</th>
                                             </tr>
@@ -94,6 +95,11 @@
                                                                 </div>
                                                             </td>
                                                         @endif
+                                                        <td class="text-center align-middle"> 
+                                                            <div class="d-flex justify-content-center">
+                                                                <span class="btn btn-{{ $item->card_type == 'Virtual' ? 'primary' : 'warning' }} btn-sm">{{ $item->card_type }}</span>
+                                                            </div>
+                                                        </td>
                                                         <td>{{date("d-M-Y h:i A", strtotime($item->created_at));}}</td>
                                                         <td>
                                                             <button class="btn btn-success" onclick="update({{ $item->id }})"> <i class="bx bx-bell-plus"></i></button>
@@ -129,12 +135,12 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Name</label>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="name" id="name">
+                            <input class="form-control" type="text" name="name" id="name" readonly>
                         </div>
                         <label for="example-text-input" class="col-md-1 col-form-label">Balance</label>
                         <div class="col-md-3">
                             <div class="input-group">
-                                    <input class="form-control" type="text" readonly id="balance">
+                                    <input class="form-control" type="text" readonly id="balance" readonly>
                                     <div class="input-group-append">
                                         <span class="input-group-text">$</span>
                                     </div>
@@ -143,8 +149,12 @@
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" name="email" id="email">
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" name="email" id="email" readonly>
+                        </div>
+                        <label for="example-text-input" class="col-md-2 col-form-label">Phone Number</label>
+                        <div class="col-md-4">
+                            <input class="form-control" readonly  type="text" id="phone_no" >
                         </div>
                     </div>
                     <div class="form-group row">
@@ -170,17 +180,22 @@
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-1 col-form-label">Type</label>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <input class="form-control" type="text" name="card_type" id="type" readonly>
                         </div>
 
+                        <label for="example-text-input" class="col-md-1 col-form-label">Category</label>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" readonly id="category">
+                        </div>
+
                         <label for="example-text-input" class="col-md-1 col-form-label">Last4</label>
-                         <div class="col-md-3">
+                         <div class="col-md-2">
                             <input class="form-control" type="text" name="last4" id="last4">
                         </div>
 
                         <label for="example-text-input" class="col-md-1 col-form-label">Pin</label>
-                         <div class="col-md-3">
+                         <div class="col-md-2">
                             <input class="form-control" type="text" name="pin" id="pin">
                         </div>
                     </div>
@@ -286,6 +301,8 @@
                     $('#type').val(data.data.card_type);
                     $('#last4').val(data.data.last4);
                     $('#pin').val(data.data.pin);
+                    $('#category').val(data.data.card_category);
+                    $('#phone_no').val(data.data.phone_no);
                     $('.updateModal').modal('show');
                 }
         });

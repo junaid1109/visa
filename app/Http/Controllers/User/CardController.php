@@ -42,10 +42,13 @@ class CardController extends Controller
             'name_on_card' => $request->name,
             'balance' => $request->amount,
             'card_type' => $request->card_type,
+            'card_category' => $request->card_category,
+            'phone_no' => $request->phone_no,
             'email' => $request->email,
         ]);
 
         $user->decrement($request->card_type == 'Virtual' ? 'virtual_card' : 'physical_card');
+        $user->decrement($request->card_category == 'Master' ? 'master_card' : 'visa_card');
         $user->decrement('balance', $request->amount);
 
         return redirect()->route('user.card')

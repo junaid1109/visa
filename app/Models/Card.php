@@ -10,6 +10,8 @@ class Card extends Model
         'user_id',
         'name_on_card',
         'card_type',
+        'card_category',
+        'phone_no',
         'balance',
         'email',
         'card_no',

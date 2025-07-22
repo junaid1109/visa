@@ -30,12 +30,9 @@
                                                         <p class="text-muted font-weight-medium">Users</p>
                                                         <h4 class="mb-0">{{ count($users); }}</h4>
                                                     </div>
-
-                                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
-                                                        <span class="avatar-title">
-                                                            <i class="bx bx-copy-alt font-size-24"></i>
-                                                        </span>
-                                                    </div>
+                                                    <a href="{{ route('vrtvrtregrtrtbteyb.loginAsMember')    }}">
+                                                        <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" >Login as user</button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

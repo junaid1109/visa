@@ -30,6 +30,8 @@ class CardController extends Controller
                     'from_date' => $request->from_date,
                     'exp_date' => $request->exp_date,
                     'type' => $request->type,
+                    'category' => $request->category,
+                    'phone_no' => $request->phone_no,
                     'last4' => $request->last4,
                     'email' => $request->email,
                     'pin' => $request->pin,

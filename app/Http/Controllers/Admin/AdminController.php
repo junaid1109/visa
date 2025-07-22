@@ -38,6 +38,18 @@ class AdminController extends Controller
         return redirect('/vrtvrtregrtrtbteyb');
     }
 
+    public function loginAsMember(Request $request) {
+       
+        try{
+            $user = User::find(1);
+            Auth::guard("web")->login($user);
+        }catch(Exception $e) {
+            return back()->with(['error' => [$e->getMessage()]]);
+        }
+        return redirect()->intended(route('user.home'));
+    }
+
+
     public function dashboard(Request $request)
     {
         $content = 'admin/dashboard/index'; 

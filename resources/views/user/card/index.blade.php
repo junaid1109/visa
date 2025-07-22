@@ -79,6 +79,16 @@
                                                     Physical <span class="badge badge-warning ml-1" id="physical-count">0</span>
                                                 </a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link filter-tab" data-filter="Visa" href="javascript:void(0)" role="tab">
+                                                    Visa <span class="badge badge-danger ml-1" id="visa-count">0</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link filter-tab" data-filter="Master" href="javascript:void(0)" role="tab">
+                                                    Master <span class="badge badge-warning ml-1" id="master-count">0</span>
+                                                </a>
+                                            </li>
                                         </ul>
 
                                         <!-- Single DataTable -->
@@ -91,6 +101,7 @@
                                                     <th>Card No</th>
                                                     <th>Status</th>
                                                     <th>Card Type</th>
+                                                    <th>Category</th>
                                                     <th>Freez/Unfreez</th>
                                                     <th>Created At</th>
                                                     <th>Action</th>
@@ -125,6 +136,11 @@
                                                     <td class="text-center align-middle"> 
                                                         <div class="d-flex justify-content-center">
                                                             <span class="btn btn-{{ $item->card_type == 'Virtual' ? 'primary' : 'warning' }} btn-sm">{{ $item->card_type }}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center align-middle"> 
+                                                        <div class="d-flex justify-content-center">
+                                                            <span class="btn btn-{{ $item->card_category == 'Visa' ? 'primary' : 'warning' }} btn-sm">{{ $item->card_category }}</span>
                                                         </div>
                                                     </td>
                                                     <td class="text-center align-middle"> 
@@ -192,8 +208,17 @@
                         </div>
                     </div>
                      <div class="form-group row">
-                        <div class="col-md-12">
+                        <div class="col-md-5">
                             <input class="form-control" required placeholder="Email" type="email" name="email">
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" required placeholder="Phone Number" type="number" name="phone_no">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" name="card_category">
+                                <option value="Visa">Visa</option>
+                                <option value="Master">Master</option>
+                            </select>
                         </div>
                     </div>
                     <div style="float:right">
@@ -236,10 +261,16 @@
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
-                        <div class="col-md-10">
+                        <div class="col-md-4">
                             <input class="form-control" type="text" readonly id="email">
                         </div>
+                        <label for="example-text-input" class="col-md-2 col-form-label">Phone Number</label>
+                        <div class="col-md-4">
+                        <input class="form-control" readonly  type="text" id="phone_no">
                     </div>
+                    </div>
+
+                   
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Card No</label>
@@ -265,17 +296,22 @@
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-1 col-form-label">Type</label>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <input class="form-control" type="text" readonly id="type">
                         </div>
 
+                        <label for="example-text-input" class="col-md-1 col-form-label">Category</label>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" readonly id="category">
+                        </div>
+
                         <label for="example-text-input" class="col-md-1 col-form-label">Last4</label>
-                         <div class="col-md-3">
+                         <div class="col-md-2">
                             <input class="form-control" type="text" readonly id="last4">
                         </div>
 
                         <label for="example-text-input" class="col-md-1 col-form-label">Pin</label>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <input class="form-control" type="text" readonly id="pin">
                         </div>
 
@@ -342,6 +378,10 @@
                 // Filter by card type (column index 5)
                 table.column(5).search(filter).draw();
             }
+            else if (filter === 'Visa' || filter === 'Master') {
+                // Filter by card type (column index 5)
+                table.column(6).search(filter).draw();
+            }
         });
     });
 
@@ -353,24 +393,29 @@
         let pendingCount = 0;
         let virtualCount = 0;
         let physicalCount = 0;
+        let visaCount = 0;
+        let masterCount = 0;
 
         table.rows().nodes().each(function (row) {
             let status = $(row).find('td:eq(4)').text().trim();     // status column
             let type = $(row).find('td:eq(5)').text().trim();       // type column
+            let category = $(row).find('td:eq(6)').text().trim();       // type column
 
             if (status === 'Active') activeCount++;
             if (status === 'Pending') pendingCount++;
             if (type === 'Virtual') virtualCount++;
             if (type === 'Physical') physicalCount++;
+            if (category === 'Visa') visaCount++;
+            if (category === 'Master') masterCount++;
         });
 
         $('#active-count').text(activeCount);
         $('#pending-count').text(pendingCount);
         $('#virtual-count').text(virtualCount);
         $('#physical-count').text(physicalCount);
+        $('#visa-count').text(visaCount);
+        $('#master-count').text(masterCount);
     }
-
-
 
     function update(id) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -392,6 +437,9 @@
                 $('#exp_date').val(data.data.exp_date);
                 $('#type').val(data.data.type);
                 $('#last4').val(data.data.last4);
+                $('#pin').val(data.data.pin);
+                $('#category').val(data.data.card_category);
+                $('#phone_no').val(data.data.phone_no);
                 $('#pin').val(data.data.pin);
                 $('.updateModal').modal('show');
             }

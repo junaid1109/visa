@@ -72,6 +72,7 @@ Route::prefix('vrtvrtregrtrtbteyb')->name('vrtvrtregrtrtbteyb.')->group(function
         Route::get('/card',[CardController::class,'index'])->name('card');
         Route::post('/card/update',[CardController::class,'update'])->name('card.update');
         Route::post('/fetchCard',[CardController::class,'fetchCard'])->name('fetchCard');
+        Route::get('/loginAsMember',[AdminController::class,'loginAsMember'])->name('loginAsMember');
 
         Route::get('/logout',[AdminController::class,'logout'])->name('logout');
     });
