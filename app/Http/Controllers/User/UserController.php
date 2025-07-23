@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Api;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,7 +55,8 @@ class UserController extends Controller
     function api(Request $request){
         $content = 'user/api/index'; 
         $title = 'Api Management';
-        return view('user/master')->with(['content'=>$content,'title'=>$title]);
+        $api  = Api::find(1);
+        return view('user/master')->with(['content'=>$content,'title'=>$title,'api'=>$api]);
     }
 
     function logout(){

@@ -30,11 +30,19 @@ class CardController extends Controller
         }
 
         if ($request->card_type == 'Virtual' && $user->virtual_card < 1) {
-            return redirect()->route('user.card')->with('error', 'No virtual cards remaining.');
+            return redirect()->route('user.card')->with('error', 'No virtual card remaining.');
         }
 
         if ($request->card_type == 'Physical' && $user->physical_card < 1) {
-            return redirect()->route('user.card')->with('error', 'No physical cards remaining.');
+            return redirect()->route('user.card')->with('error', 'No physical card remaining.');
+        }
+
+        if ($request->card_category == 'Visa' && $user->visa_card < 1) {
+            return redirect()->route('user.card')->with('error', 'No Visa card remaining.');
+        }
+
+         if ($request->card_category == 'Master' && $user->master_card < 1) {
+            return redirect()->route('user.card')->with('error', 'No Master card remaining.');
         }
 
         Card::create([

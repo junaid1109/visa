@@ -70,10 +70,8 @@
                                         </div>
                                     </div>
 
-                              
 
-
-                                     <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <div class="card mini-stats-wid">
                                             <div class="card-body">
                                                 <div class="media">
@@ -110,7 +108,7 @@
                                     </div>
 
                                     
-                                     <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <div class="card mini-stats-wid">
                                             <div class="card-body">
                                                 <div class="media">
@@ -133,6 +131,35 @@
                                                         <h4 class="mb-0">{{  $user->physical_card; }}</h4>
                                                     </div>
                                                     <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#physicalModal">Add Physical Card</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium">Remaining Master Card</p>
+                                                        <h4 class="mb-0">{{ $user->master_card; }}</h4>
+                                                    </div>
+                                                        <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#masterModal">Add Master Card</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium">Remaining Visa Card</p>
+                                                        <h4 class="mb-0">{{  $user->visa_card; }}</h4>
+                                                    </div>
+                                                    <button  type="button" class="mb-2 btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2" data-toggle="modal" data-target="#visaModal">Add Visa Card</button>
 
                                                 </div>
                                             </div>
@@ -181,7 +208,6 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="physicalModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -199,6 +225,65 @@
                         <label><strong>Add Physical Card</strong></label>
                         <input type="number" name="total" class="form-control"  placeholder="Enter in number">
                         <input type="hidden" name="type" value="physical" >
+
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="masterModal" tabindex="-1" role="dialog" aria-labelledby="masterModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('vrtvrtregrtrtbteyb.add') }}" method="post" >
+                    @csrf
+                <div class="modal-body">
+                    <div id="flatCurrencySection">
+                        <div class="form-group">
+                            <label><strong>Add Master Card</strong></label>
+                            <input type="number" name="total"  class="form-control"  placeholder="Enter in number">
+                            <input type="hidden" name="type" value="master" >
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="visaModal" tabindex="-1" role="dialog" aria-labelledby="depositModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('vrtvrtregrtrtbteyb.add') }}" method="post" >
+                    @csrf
+
+            <div class="modal-body">
+                <div id="flatCurrencySection">
+                    <div class="form-group">
+                        <label><strong>Add Visa Card</strong></label>
+                        <input type="number" name="total" class="form-control"  placeholder="Enter in number">
+                        <input type="hidden" name="type" value="visa" >
 
                     </div>
                 </div>

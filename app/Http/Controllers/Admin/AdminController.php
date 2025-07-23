@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Card;
+use App\Models\Api;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -71,11 +72,34 @@ class AdminController extends Controller
         elseif($type=='physical'){
             $user->physical_card += $request->total;
         }
-       elseif($type=='balance'){
+        elseif($type=='balance'){
             $user->balance += $request->total;
+        }
+        elseif($type=='visa'){
+            $user->visa_card += $request->total;
+        }
+         elseif($type=='master'){
+            $user->master_card += $request->total;
         }
         $user->save();
         return redirect()->route('vrtvrtregrtrtbteyb.home')
         ->with('success', 'Added successfully.');
+    }
+
+    public function api(Request $request){
+        $content = 'admin/api/index'; 
+        $title = 'Api Management';
+        $api  = Api::find(1);
+        return view('admin/master')->with(['content'=>$content,'title'=>$title,'api'=>$api]);
+    }
+
+    public function apiStore(Request $request)
+    {
+        $api = Api::find(1);
+        $api->status = $request->status;
+        $api->message = $request->message;
+        $api->save();
+        return redirect()->route('vrtvrtregrtrtbteyb.api')
+        ->with('success', 'Updated successfully.');
     }
 }

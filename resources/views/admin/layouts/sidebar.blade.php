@@ -24,6 +24,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('vrtvrtregrtrtbteyb.api') }}" class=" waves-effect">
+                        <i class="bx bx-calendar"></i>
+                        <span>Api</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
