@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Card;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\CardMail;
+use Illuminate\Support\Facades\Mail;
 
 class CardController extends Controller
 {
@@ -45,19 +47,21 @@ class CardController extends Controller
             return redirect()->route('user.card')->with('error', 'No Master card remaining.');
         }
 
-        Card::create([
-            'user_id'=>Auth::id(),
-            'name_on_card' => $request->name,
-            'balance' => $request->amount,
-            'card_type' => $request->card_type,
-            'card_category' => $request->card_category,
-            'phone_no' => $request->phone_no,
-            'email' => $request->email,
-        ]);
+        $details = Card::create([
+                    'user_id'=>Auth::id(),
+                    'name_on_card' => $request->name,
+                    'balance' => $request->amount,
+                    'card_type' => $request->card_type,
+                    'card_category' => $request->card_category,
+                    'phone_no' => $request->phone_no,
+                    'email' => $request->email,
+                ]);
 
         $user->decrement($request->card_type == 'Virtual' ? 'virtual_card' : 'physical_card');
         $user->decrement($request->card_category == 'Master' ? 'master_card' : 'visa_card');
         $user->decrement('balance', $request->amount);
+
+        Mail::to($request->email)->queue(new CardMail($details));
 
         return redirect()->route('user.card')
         ->with('success', 'Card created successfully. Admin will activate this card soon!');

@@ -36,6 +36,10 @@
 
 <script src="{{asset('admin_assets/js/pages/dashboard.init.js')}}"></script>
 
+<script src="{{asset('admin_assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+
+<script src="{{asset('admin_assets/js/pages/sweet-alerts.init.js')}}"></script>
+
 <script src="{{asset('admin_assets/js/app.js')}}"></script>
 @stack('scripts')
 
