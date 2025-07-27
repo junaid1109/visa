@@ -127,9 +127,9 @@
                                                 </div>
                                             </td>
                                         @else
-                                            <td class="text-center align-middle"> 
-                                                <div class="d-flex justify-content-center">
-                                                    <span class="btn btn-secondary btn-sm">{{ $item->card_status }}</span>
+                                            <td class="text-center align-middle" onclick="checkStatus({{ $item->id }})"> 
+                                                <div class="d-flex justify-content-center" >
+                                                    <span class="btn btn-danger btn-sm">{{ $item->card_status }}</span>
                                                 </div>
                                             </td>
                                         @endif
@@ -159,6 +159,8 @@
                                         <td>
                                             @if ($item->card_status == 'Pending')
                                                 <button class="btn btn-info" disabled data-placement="top" data-toggle="tooltip" title="" data-original-title="Card is pending" > <i class="bx bx-edit"></i></button>
+                                            @elseif ($item->card_status == 'Reject')
+                                                <button class="btn btn-danger" onclick="checkStatus({{ $item->id }})"> <i class="bx bx-circle"></i></button>
                                             @else
                                                 <button class="btn btn-info" onclick="update({{ $item->id }})"> <i class="bx bx-edit"></i></button>
                                             @endif
@@ -200,7 +202,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control" name="card_type">
+                            <select class="form-control" name="card_type" id="card_type">
                                 <option value="Virtual">Virtual</option>
                                 <option value="Physical">Physical</option>
                             </select>
@@ -320,6 +322,75 @@
     </div>
 </div>
 
+<div class="modal fade rejectModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Card Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <input class="form-control" type="hidden" name="id" id="id">
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">Name</label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" readonly id="reject_name">
+                        </div>
+
+                        <label for="example-text-input" class="col-md-1 col-form-label">Balance</label>
+
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                    <input class="form-control" type="text" readonly id="reject_balance">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" readonly id="reject_email">
+                        </div>
+                        <label for="example-text-input" class="col-md-2 col-form-label">Phone Number</label>
+                        <div class="col-md-4">
+                        <input class="form-control" readonly  type="text" id="reject_phone_no">
+                    </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">Type</label>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" readonly id="reject_type">
+                        </div>
+
+                        <label for="example-text-input" class="col-md-1 col-form-label">Category</label>
+                        <div class="col-md-2">
+                            <input class="form-control" type="text" readonly id="reject_category">
+                        </div>
+
+                        <label for="example-text-input" class="col-md-1 col-form-label">Status</label>
+                        <div class="col-md-2">
+                            <input class=" btn btn-danger" type="text" readonly id="reject_status">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-1 col-form-label">Status</label>
+                        <div class="col-md-11">
+                            <textarea class="form-control" cols="5" rows="5" readonly id="reject_reason"></textarea>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
 .nav-tabs-custom .nav-link {
     padding: 0.5rem 1.25rem;
@@ -335,6 +406,10 @@
 
 
 @push('scripts')
+
+<script>
+    const fetchCardUrl = "{{ route('user.fetchCard') }}";
+</script>
 
 <script src="{{asset('admin_assets/js/card.js')}}"></script>
 

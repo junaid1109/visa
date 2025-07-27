@@ -5,7 +5,23 @@
             e.preventDefault(); // Stop form submission
                 {
                 Swal.fire({
-                    text:"Visa card not allow yet!",
+                    text:"Visa Cards are currently in maintenance mode, we will let you know once they are available again. Thanks for being part of us",
+                    type:"danger",
+                    showCancelButton:!0,
+                    confirmButtonColor:"#556ee6",
+                    cancelButtonColor:"#f46a6a"
+                });
+            }
+        }
+    });
+
+    document.getElementById('cardForm').addEventListener('submit', function(e) {
+        const type = document.getElementById('card_type').value;
+        if (type === 'Physical') {
+            e.preventDefault(); // Stop form submission
+                {
+                Swal.fire({
+                    text:"Physical Cards are currently in maintenance mode, we will let you know once they are available again. Thanks for being part of us",
                     type:"danger",
                     showCancelButton:!0,
                     confirmButtonColor:"#556ee6",
@@ -96,7 +112,7 @@
     function update(id) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-            url: "{{ route('user.fetchCard') }}",
+            url: fetchCardUrl,
             type: 'POST',
             data: {
                 _token: csrfToken,
@@ -118,6 +134,31 @@
                 $('#phone_no').val(data.data.phone_no);
                 $('#pin').val(data.data.pin);
                 $('.updateModal').modal('show');
+            }
+        });
+    }
+    
+
+    function checkStatus(id) {
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: fetchCardUrl,
+            type: 'POST',
+            data: {
+                _token: csrfToken,
+                id: id
+            },
+            success: function(data) {
+                $('#id').val(data.data.id);
+                $('#reject_name').val(data.data.name_on_card);
+                $('#reject_email').val(data.data.email);
+                $('#reject_balance').val(data.data.balance);
+                $('#reject_type').val(data.data.card_type);
+                $('#reject_category').val(data.data.card_category);
+                $('#reject_phone_no').val(data.data.phone_no);
+                $('#reject_status').val(data.data.card_status);
+                $('#reject_reason').val(data.data.reject_reason);
+                $('.rejectModal').modal('show');
             }
         });
     }

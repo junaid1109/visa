@@ -42,9 +42,22 @@ class CardController extends Controller
 
         return redirect()->route('vrtvrtregrtrtbteyb.card')
         ->with('success', 'Card Updated successfully.Now This Card is Active');
-
     }
 
+    public function statusUpdate(Request $request)
+    {
+        Card::updateOrCreate(
+                ['id' => $request->cardId],  
+                [
+                    'card_status' => 'Reject',
+                    'reject_reason' => $request->reject_reason,
+                ]
+                
+        );
+
+        return redirect()->route('vrtvrtregrtrtbteyb.card')
+        ->with('success', 'Card Updated successfully.Now This Card is Reject');
+    }
     public function fetchCard(Request $request){
 
         $data = Card::find($request->id);

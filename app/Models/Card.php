@@ -26,5 +26,6 @@ class Card extends Model
         'is_default',
         'updated_at',
         'created_at',
+        'reject_reason'
     ];
 }

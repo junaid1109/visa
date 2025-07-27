@@ -83,7 +83,7 @@
                                                                 </div>
                                                             </td>
                                                         @elseif ($item->card_status == 'Pending')
-                                                            <td class="text-center align-middle"> 
+                                                            <td class="text-center align-middle openStatusModal" data-id="{{ $item->id }}" data-toggle="modal" data-target=".statusModal"> 
                                                                 <div class="d-flex justify-content-center">
                                                                     <span class="btn btn-info btn-sm">{{ $item->card_status }}</span>
                                                                 </div>
@@ -91,7 +91,7 @@
                                                         @else
                                                             <td class="text-center align-middle"> 
                                                                 <div class="d-flex justify-content-center">
-                                                                    <span class="btn btn-secondary btn-sm">{{ $item->card_status }}</span>
+                                                                    <span class="btn btn-danger btn-sm">{{ $item->card_status }}</span>
                                                                 </div>
                                                             </td>
                                                         @endif
@@ -199,6 +199,13 @@
                             <input class="form-control" type="text" name="pin" id="pin">
                         </div>
                     </div>
+
+                    <div class="form-group row reason">
+                        <label for="example-text-input" class="col-md-1 col-form-label">Type</label>
+                        <div class="col-md-11">
+                            <textarea class="form-control" id="reject_reason" readonly></textarea>
+                        </div>
+                    </div>
                      <div style="float:right">
                         <button type="submit"  class="btn btn-primary waves-effect waves-light" >Update Card</button>
                     </div>
@@ -208,7 +215,39 @@
     </div>
 </div>
 
-
+<div class="modal fade statusModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Rejection Card</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="cardForm" action="{{ route('vrtvrtregrtrtbteyb.card.status.update') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input class="form-control" type="hidden" name="cardId" id="id">
+                    <div class="form-group row">
+                    <div class="col-md-12">
+                        <select class="form-control" name="status" >
+                            <option value="Reject">Reject</option>
+                        </select>
+                    </div>
+                    </div>
+                     <div class="form-group row">
+                        <div class="col-md-12">
+                            <textarea name="reject_reason" class="form-control"  placeholder="Rejection Reason" required id=""></textarea>
+                        </div>
+                    </div>
+                    <div style="float:right">
+                        <cenetr><button type="submit"  class="btn btn-primary waves-effect waves-light" >Update</button></center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @push('scripts')
 
@@ -253,6 +292,12 @@
                 table.column(5).search(filter).draw();
             }
         });
+
+        $('.openStatusModal').on('click', function () {
+            var cardId = $(this).data('id');
+            $('input[name="cardId"]').val(cardId);
+        });
+
     });
 
     function updateTabCounts() {
@@ -290,6 +335,14 @@
                     id: id
                 },
                 success: function(data) {
+
+                   var reason = data.data.reject_reason;
+                    if (reason && reason.trim() !== '') {
+                        $('.reason').show(); 
+                    } else {
+                        $('.reason').hide(); 
+                    }
+
                     $('#id').val(data.data.id);
                     $('#name').val(data.data.name_on_card);
                     $('#email').val(data.data.email);
@@ -303,6 +356,7 @@
                     $('#pin').val(data.data.pin);
                     $('#category').val(data.data.card_category);
                     $('#phone_no').val(data.data.phone_no);
+                    $('#reject_reason').val(data.data.reject_reason);
                     $('.updateModal').modal('show');
                 }
         });
