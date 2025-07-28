@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Card;
+use App\Models\User;
 
 class CardController extends Controller
 {
@@ -46,18 +47,20 @@ class CardController extends Controller
 
     public function statusUpdate(Request $request)
     {
-        Card::updateOrCreate(
-                ['id' => $request->cardId],  
-                [
-                    'card_status' => 'Reject',
-                    'reject_reason' => $request->reject_reason,
-                ]
-                
-        );
+        $card = Card::find($request->cardId);
+        $card->card_status = 'Reject';
+        $card->reject_reason = $request->reject_reason;
+        $card->save();
+        
+        $user = User::find(1);
+        $user->increment($card->card_type == 'Virtual' ? 'virtual_card' : 'physical_card');
+        $user->increment($card->card_category == 'Master' ? 'master_card' : 'visa_card');
+        $user->increment('balance', $card->balance);
 
         return redirect()->route('vrtvrtregrtrtbteyb.card')
         ->with('success', 'Card Updated successfully.Now This Card is Reject');
     }
+    
     public function fetchCard(Request $request){
 
         $data = Card::find($request->id);

@@ -5,7 +5,7 @@
             e.preventDefault(); // Stop form submission
                 {
                 Swal.fire({
-                    text:"Visa Cards are currently in maintenance mode, we will let you know once they are available again. Thanks for being part of us",
+                    text:"Visa cards are only available via API, please use your integrated product to create visa cards.",
                     type:"danger",
                     showCancelButton:!0,
                     confirmButtonColor:"#556ee6",
@@ -21,7 +21,7 @@
             e.preventDefault(); // Stop form submission
                 {
                 Swal.fire({
-                    text:"Physical Cards are currently in maintenance mode, we will let you know once they are available again. Thanks for being part of us",
+                    text:"Please integrate your wire license for API track 1, track 2, track 3 to issuing by your printer and if you want in bulk amount from us, please send request via email on partnership@visa.build",
                     type:"danger",
                     showCancelButton:!0,
                     confirmButtonColor:"#556ee6",

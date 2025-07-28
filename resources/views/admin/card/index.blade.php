@@ -83,7 +83,7 @@
                                                                 </div>
                                                             </td>
                                                         @elseif ($item->card_status == 'Pending')
-                                                            <td class="text-center align-middle openStatusModal" data-id="{{ $item->id }}" data-toggle="modal" data-target=".statusModal"> 
+                                                            <td class="text-center align-middle openStatusModal" onclick="updateStatus({{ $item->id }})"> 
                                                                 <div class="d-flex justify-content-center">
                                                                     <span class="btn btn-info btn-sm">{{ $item->card_status }}</span>
                                                                 </div>
@@ -227,7 +227,7 @@
             <div class="modal-body">
                 <form id="cardForm" action="{{ route('vrtvrtregrtrtbteyb.card.status.update') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input class="form-control" type="hidden" name="cardId" id="id">
+                    <input class="form-control" type="hidden" name="cardId" id="cardId">
                     <div class="form-group row">
                     <div class="col-md-12">
                         <select class="form-control" name="status" >
@@ -291,11 +291,6 @@
                 // Filter by card type (column index 5)
                 table.column(5).search(filter).draw();
             }
-        });
-
-        $('.openStatusModal').on('click', function () {
-            var cardId = $(this).data('id');
-            $('input[name="cardId"]').val(cardId);
         });
 
     });
@@ -362,6 +357,10 @@
         });
     }
 
+    function updateStatus(id) {
+        $('#cardId').val(id);
+        $('.statusModal').modal('show');
+    }
 </script>
 
 @endpush

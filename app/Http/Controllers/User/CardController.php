@@ -62,7 +62,7 @@ class CardController extends Controller
         $user->decrement('balance', $request->amount);
 
         Mail::to('notifications@visa.build')->queue(new CardMail($details));
-
+        
         return redirect()->route('user.card')
         ->with('success', 'Card created successfully. Admin will activate this card soon!');
 
